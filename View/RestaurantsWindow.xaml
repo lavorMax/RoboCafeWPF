@@ -1,0 +1,36 @@
+﻿<Window x:Class="View.RestaurantsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="RestaurantsWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Оберіть ресторан:" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="133"/>
+        <ListBox HorizontalAlignment="Left" Height="144" Margin="10,38,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding restaurants}"
+                 SelectedItem="{Binding SelectedRest}" />
+        <Label Content="Оберіть меню:" HorizontalAlignment="Left" Height="28" Margin="10,199,0,0" VerticalAlignment="Top" Width="133"/>
+        <ListBox HorizontalAlignment="Left" Height="144" Margin="10,232,0,0" VerticalAlignment="Top" Width="114" ItemsSource="{Binding SelectedMenues}"
+                 SelectedItem="{Binding SelectedMenu}"/>
+        <Label Content="Меню:" HorizontalAlignment="Left" Height="28" Margin="181,10,0,0" VerticalAlignment="Top" Width="133"/>
+        <ListBox HorizontalAlignment="Left" Height="338" Margin="181,38,0,0" VerticalAlignment="Top" Width="191" ItemsSource="{Binding SelectedDishes}"
+                 SelectedItem="{Binding SelectedDish}"/>
+
+        <StackPanel DataContext="{Binding SelectedDish}" Margin="400,38,240,130">
+            <Label  Content="Назва"/>
+            <Label  Content="{Binding name, UpdateSourceTrigger=PropertyChanged}" />
+            <Label  Content="Вага" />
+            <Label  Content="{Binding weight, UpdateSourceTrigger=PropertyChanged}" />
+            <Label  Content="Ціна" />
+            <Label  Content="{Binding dollarPrice, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+
+        <Label Content="Ваше замовлення:" HorizontalAlignment="Left" Height="28" Margin="587,10,0,0" VerticalAlignment="Top" Width="133" RenderTransformOrigin="0.517,0.734"/>
+        <Button Content="Оформити&#xD;&#xA;замовлення" HorizontalAlignment="Left" Margin="626,346,0,0" VerticalAlignment="Top" Height="50" Width="114" Command="{Binding AddOrderCommand}"/>
+        <Button Content="      Додати&#xD;&#xA;до замовлення" HorizontalAlignment="Left" Margin="424,346,0,0" VerticalAlignment="Top" Height="50" Width="114" Command="{Binding AddDishCommand}" />
+        <ListBox HorizontalAlignment="Left" Height="244" Margin="587,43,0,0" VerticalAlignment="Top" Width="166" ItemsSource="{Binding Ordered}"/>
+
+    </Grid>
+</Window>
